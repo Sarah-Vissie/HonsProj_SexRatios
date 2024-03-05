@@ -27,6 +27,10 @@ fire <- st_read("Data/All_Fires_20_21_gw/All_Fires_20_21_gw.shp")
 
 fire_2010_2021 <- filter(fire, between(YEAR, 2010, 2021))
 
+#Filter out older dates, I want between 2000 - 2021
+
+fire_2000_2021 <- filter(fire, between(YEAR, 2000, 2021))
+
 #disable S2 geometry library to fix error code: Error in wk_handle.wk_wkb(wkb, s2_geography_writer(oriented = oriented,  : 
 # Loop 0 is not valid: Edge 174 has duplicate vertex with edge 177
 sf_use_s2(F) 
@@ -59,3 +63,7 @@ mapview(aulax_no_fires_sf, col.regions = "green") +
   mapview(leucadendron_no_fires_sf, col.regions = "blue") + 
   mapview(fire_2010_2021, col.regions = "red")
 
+#plot aulax_no_fires, leucadendron_no_fires and fire_2000_2021 using mapview
+mapview(aulax_no_fires_sf, col.regions = "green") + 
+  mapview(leucadendron_no_fires_sf, col.regions = "blue") + 
+  mapview(fire_2000_2021, col.regions = "purple")
